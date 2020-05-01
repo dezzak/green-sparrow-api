@@ -1,4 +1,4 @@
-package uk.co.dezzanet.greensparrow.greensparrow;
+package uk.co.dezzanet.greensparrow.greensparrow.provider;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
@@ -11,6 +11,7 @@ import graphql.schema.idl.TypeDefinitionRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import uk.co.dezzanet.greensparrow.greensparrow.graphql.DataFetchers;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class GraphQLProvider {
 
 
     @Autowired
-    GraphQLDataFetchers graphQLDataFetchers;
+    DataFetchers graphQLDataFetchers;
 
     private GraphQL graphQL;
 
@@ -45,7 +46,8 @@ public class GraphQLProvider {
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher()))
+                        .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher())
+                        .dataFetcher("products", graphQLDataFetchers.getAllProducts()))
                 .type(newTypeWiring("Book")
                         .dataFetcher("author", graphQLDataFetchers.getAuthorDataFetcher()))
                 .build();

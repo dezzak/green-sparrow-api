@@ -1,15 +1,16 @@
-package uk.co.dezzanet.greensparrow.greensparrow;
+package uk.co.dezzanet.greensparrow.greensparrow.graphql;
 
 import com.google.common.collect.ImmutableMap;
 import graphql.schema.DataFetcher;
 import org.springframework.stereotype.Component;
+import uk.co.dezzanet.greensparrow.greensparrow.model.Product;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 @Component
-public class GraphQLDataFetchers {
+public class DataFetchers {
 
     private static List<Map<String, String>> books = Arrays.asList(
             ImmutableMap.of("id", "book-1",
@@ -37,6 +38,15 @@ public class GraphQLDataFetchers {
                     "firstName", "Anne",
                     "lastName", "Rice")
     );
+
+    private static List<Product> products = Arrays.asList(
+            new Product("1", "product1", 114),
+            new Product("2", "product2", 70)
+    );
+
+    public DataFetcher getAllProducts() {
+        return dataFetchingEnvironment -> products;
+    }
 
     public DataFetcher getBookByIdDataFetcher() {
         return dataFetchingEnvironment -> {
