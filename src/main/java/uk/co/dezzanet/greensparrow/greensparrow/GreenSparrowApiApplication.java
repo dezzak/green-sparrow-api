@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GreenSparrowApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GreenSparrowApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GreenSparrowApiApplication.class, args);
+    }
 
 }
