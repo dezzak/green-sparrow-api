@@ -16,7 +16,7 @@ import java.util.concurrent.CompletableFuture
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = GreenSparrowApiApplication.class)
 @AutoConfigureMockMvc
-class  ProductsQuerySpecIT extends Specification {
+class ProductsQuerySpecIT extends Specification {
     @Autowired
     GraphQLInvocation invocation
 
